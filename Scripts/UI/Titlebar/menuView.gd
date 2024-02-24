@@ -21,6 +21,7 @@ func _on_pressed(id: int):
 		6 when checkable: maskVal = [3, get_popup().is_item_checked(idx)]
 		7 when checkable: maskVal = [2, get_popup().is_item_checked(idx)]
 		8 when checkable: maskVal = [4, get_popup().is_item_checked(idx)]
+		9 when checkable: maskVal = [5, get_popup().is_item_checked(idx)]
 		3:
 			if _curLvl.is_empty(): push_warning("No level loaded!")
 			else: OS.shell_open(_curLvl)
