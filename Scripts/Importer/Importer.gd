@@ -204,6 +204,7 @@ func placeBkgPlanes(bkgplns: Dictionary): # Place background planes listed in a 
 		var mat = StandardMaterial3D.new()
 		
 		mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 		mat.albedo_texture = tex
 		
 		inst.position = _arr2vec(bkgplns[i]["Position"]) - Vector3(0.5, 0.5, 0.5)
