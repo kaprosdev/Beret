@@ -196,11 +196,20 @@ func placeBkgPlanes(bkgplns: Dictionary): # Place background planes listed in a 
 	for i in bkgplns:
 		## TODO: Find a way to handle gifs.
 		var dir = Settings.dict["AssetDirs"][Settings.idx] + "background planes\\"
+		var tex = PlaceholderTexture2D
 		var path = dir + bkgplns[i]["TextureName"].to_lower() + ".png"
+		if not FileAccess.file_exists(path):
+			path = dir + bkgplns[i]["TextureName"].to_lower() + ".gif"
+			if not FileAccess.file_exists(path):
+				printerr("Bgplane texture doesn't exist!")
+			else:
+				tex = GifManager.animated_texture_from_file(path)
+		else:
+			tex = ImageTexture.create_from_image(Image.load_from_file(path))
 		var inst := MeshInstance3D.new()
 		inst.mesh = PlaneMesh.new()
 		
-		var tex = ImageTexture.create_from_image(Image.load_from_file(path))
+		
 		var mat = StandardMaterial3D.new()
 		
 		mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
