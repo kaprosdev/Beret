@@ -52,6 +52,9 @@ func loadSettings() -> void:
 					if not filename.ends_with(".fezts.json"): continue
 					var tsName = filename.get_slice('.', 0)
 					assets["Trilesets"].append({"Name": tsName, "AssetDir": dirIdx})
+			# FEZ music structure is odd - it's constructed of folders of loops
+			# The fezsong.json files only exist to provide sync info for certain loops(?)
+			# So I've built a specific function to scan the folders
 			if DirAccess.dir_exists_absolute(dir + "music\\"):
 				for filename: String in DirAccess.get_files_at(dir + "music\\"):
 					if not filename.ends_with(".fezsong.json"): continue

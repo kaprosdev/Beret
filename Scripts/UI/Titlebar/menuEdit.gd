@@ -1,5 +1,6 @@
 extends MenuButton
 @onready var _setPaths = $"SetPaths"
+@onready var _levelProperties = $"LevelProperties_Window"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,3 +10,4 @@ func _ready() -> void:
 func _on_edit_menu_pressed(id: int) -> void:
 	match id:
 		0: _setPaths.visible = true
+		2: _levelProperties.visible = true

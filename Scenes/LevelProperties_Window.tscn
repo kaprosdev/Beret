@@ -1,0 +1,205 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsix6u3t7ghxi"]
+
+[ext_resource type="Texture2D" uid="uid://bl1530ha3lco6" path="res://UI/Add.svg" id="1_jl1sn"]
+[ext_resource type="Script" path="res://Scripts/UI/Titlebar/LevelProperties_Window.gd" id="1_mn1dd"]
+[ext_resource type="Texture2D" uid="uid://ccw4v768wsfxp" path="res://UI/Remove.svg" id="2_dnfjm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tky88"]
+font_size = 20
+
+[node name="LevelProperties_Window" type="Window"]
+title = "Level Properties"
+initial_position = 2
+size = Vector2i(750, 500)
+script = ExtResource("1_mn1dd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="GeneralProperties" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties"]
+layout_mode = 2
+text = "General"
+label_settings = SubResource("LabelSettings_tky88")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties"]
+layout_mode = 2
+
+[node name="NodeType" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties"]
+layout_mode = 2
+tooltip_text = "Size of the level on the world map"
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/NodeType"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Node Type"
+
+[node name="NodeTypeOption" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/NodeType"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 1
+popup/item_0/text = "Small (Lesser)"
+popup/item_0/id = 0
+popup/item_1/text = "Medium (Node)"
+popup/item_1/id = 1
+popup/item_2/text = "Large (Hub)"
+popup/item_2/id = 2
+
+[node name="GeneralBooleans" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties"]
+layout_mode = 2
+columns = 2
+
+[node name="Flat" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/GeneralBooleans" groups=["BoolLevelProperty"]]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Disables turning"
+text = "Flat (no 3D)"
+metadata/Property = "Flat"
+
+[node name="Quantum" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/GeneralBooleans" groups=["BoolLevelProperty"]]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Enables the Quantum Room effect (all blocks not near Gomez are visually randomized)"
+text = "Quantum"
+metadata/Property = "Quantum"
+
+[node name="Loops" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/GeneralBooleans" groups=["BoolLevelProperty"]]
+layout_mode = 2
+tooltip_text = "Enables looping between the top and bottom of the level"
+text = "Loops Vertically"
+metadata/Property = "Loops"
+
+[node name="Rainy" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/GeneralBooleans" groups=["BoolLevelProperty"]]
+layout_mode = 2
+tooltip_text = "Rainy"
+text = "Rainy"
+metadata/Property = "Rainy"
+
+[node name="BlinkingAlpha" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/GeneralProperties/GeneralBooleans" groups=["BoolLevelProperty"]]
+layout_mode = 2
+tooltip_text = "Enables CMYKave theme and rhythm/sequence effects on triles"
+text = "CMYKave Effects"
+metadata/Property = "BlinkingAlpha"
+
+[node name="VisualProperties" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties"]
+layout_mode = 2
+text = "Visuals"
+label_settings = SubResource("LabelSettings_tky88")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties"]
+layout_mode = 2
+
+[node name="SkyName" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties"]
+layout_mode = 2
+tooltip_text = "Size of the level on the world map"
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties/SkyName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sky"
+
+[node name="SkyNameOption" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties/SkyName"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="VisualBooleans" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties"]
+layout_mode = 2
+columns = 2
+
+[node name="SkipPostProcess" type="CheckBox" parent="MarginContainer/HBoxContainer/VBoxContainer/VisualProperties/VisualBooleans" groups=["BoolLevelProperty"]]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Disables turning"
+text = "Skip Post Process"
+metadata/Property = "SkipPostProcess"
+
+[node name="SoundProperties" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/SoundProperties"]
+layout_mode = 2
+text = "Sound & Music"
+label_settings = SubResource("LabelSettings_tky88")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/SoundProperties"]
+layout_mode = 2
+
+[node name="SongName" type="HBoxContainer" parent="MarginContainer/HBoxContainer/SoundProperties"]
+layout_mode = 2
+tooltip_text = "Size of the level on the world map"
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/SoundProperties/SongName"]
+layout_mode = 2
+text = "Song Name"
+
+[node name="SongNameOption" type="OptionButton" parent="MarginContainer/HBoxContainer/SoundProperties/SongName"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="MutedLoops" type="VBoxContainer" parent="MarginContainer/HBoxContainer/SoundProperties"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops"]
+layout_mode = 2
+text = "Muted Song Loops"
+
+[node name="MutedLoopsControls" type="HBoxContainer" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops"]
+layout_mode = 2
+
+[node name="LoopSelect" type="OptionButton" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops/MutedLoopsControls"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoopAddButton" type="Button" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops/MutedLoopsControls"]
+layout_mode = 2
+icon = ExtResource("1_jl1sn")
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops/MutedLoopsControls"]
+layout_mode = 2
+
+[node name="LoopRemoveButton" type="Button" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops/MutedLoopsControls"]
+layout_mode = 2
+icon = ExtResource("2_dnfjm")
+
+[node name="MutedLoopsList" type="ItemList" parent="MarginContainer/HBoxContainer/SoundProperties/MutedLoops"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+allow_search = false
