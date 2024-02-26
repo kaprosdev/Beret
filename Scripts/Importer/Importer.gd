@@ -215,6 +215,10 @@ func placeBkgPlanes(bkgplns: Dictionary): # Place background planes listed in a 
 		mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 		mat.albedo_texture = tex
+		if bkgplns[i]["Billboard"]:
+			mat.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED
+			mat.billboard_keep_scale = true
+			inst.mesh.orientation = PlaneMesh.FACE_Z
 		
 		inst.position = _arr2vec(bkgplns[i]["Position"]) - Vector3(0.5, 0.5, 0.5)
 		inst.quaternion = _arr2quat(bkgplns[i]["Rotation"])
@@ -226,7 +230,10 @@ func placeBkgPlanes(bkgplns: Dictionary): # Place background planes listed in a 
 		### I suppose the Trixel engine renders each bkgpln as a thin cube,
 		### with a defined width, height, and depth? Very strange...
 		inst.rotation_degrees.x = 90
-		inst.scale = Vector3(bkgplns[i]["Size"][0], bkgplns[i]["Size"][2], bkgplns[i]["Size"][1]) / 2
+		if bkgplns[i]["Billboard"]:
+			inst.scale = Vector3(bkgplns[i]["Size"][0], bkgplns[i]["Size"][1], bkgplns[i]["Size"][2]) / 2
+		else:
+			inst.scale = Vector3(bkgplns[i]["Size"][0], bkgplns[i]["Size"][2], bkgplns[i]["Size"][1]) / 2
 		
 		call_deferred("add_child", inst)
 
